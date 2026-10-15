@@ -14,10 +14,14 @@ final public class AdForusInterstitialVideoAdapter: APSSPInterstitialVideoAdapte
    
     private var adForusMediationInterstitialVideoAd: AdForusMediationInterstitialVideoAd?
     
-    public var delegate: APSSPInterstitialVideoAdapterDelegate?
+    public weak var delegate: APSSPInterstitialVideoAdapterDelegate?
     
-    public var rootViewController: UIViewController?
+    public weak var rootViewController: UIViewController?
     
+    deinit {
+        APLogger.debug("AdForusInterstitialVideoAdapter deinit")
+    }
+
     public init(placementDic: [String: String], rootViewController: UIViewController?, info: [String : Any?]) {
         let placementId = placementDic[APSSPPlacementKey.adUnitID.rawValue] ?? ""
         adForusMediationInterstitialVideoAd = AdForusMediationInterstitialVideoAd(placementId: placementId)
